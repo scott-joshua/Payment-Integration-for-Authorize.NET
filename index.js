@@ -1,3 +1,5 @@
+'use strict';
+
 const https = require("https");
 
 exports.handler = function(event, context) {
@@ -39,6 +41,10 @@ exports.handler = function(event, context) {
     var amount = event.amount;
     var ccnum = event.ccnum;
     var cvv = event.cvv;
+
+
+    console.log("test transactiopn", isTestTransaction);
+    console.log("gateway_key", gateway_key);
 
     /* Define request body */
     var postjsonPayload = {
@@ -102,6 +108,9 @@ exports.handler = function(event, context) {
                there.  Filtering that out allows JSON.parse to function without generating the infamous "Unexpected Token".  While doing that filtering
                might as well do some other filtering just to be safe in case something else is tossed out into the wild.
            */
+            console.log("response", responseData);
+
+
             var cleanedResponse = responseData.replace(/\r\n/g, "").replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, "").replace(/\f/g, "").replace(/﻿/g, "");
             /* Extract Specific Values */
             authnetResponseData = JSON.parse(cleanedResponse);

@@ -1,44 +1,33 @@
-Welcome to the AWS CodeStar sample web service
+Welcome to the Authorize.net lambda Function
 ==============================================
 
-This sample code helps get you started with a simple Express web service
-deployed by AWS CloudFormation to AWS Lambda and Amazon API Gateway.
+This is a lambda function that wraps a call to the Authorize.net Authorization SErvice
 
-What's Here
------------
+You will need a Login and a Token from Authorize.net
+If you have sam-local installed you run test locally with
 
-This sample includes:
-
-* README.md - this file
-* buildspec.yml - this file is used by AWS CodeBuild to package your
-  service for deployment to AWS Lambda
-* app.js - this file contains the sample Node.js code for the web service
-* index.js - this file contains the AWS Lambda handler code
-* template.yml - this file contains the Serverless Application Model (SAM) used
-  by AWS Cloudformation to deploy your service to AWS Lambda and Amazon API
-  Gateway.
+sam local invoke CreditCardAuthorize --env-vars env.json -e event.json 
 
 
-What Do I Do Next?
-------------------
+Example input:
+```json
 
-If you have checked out a local copy of your repository you can start making
-changes to the sample code.  We suggest making a small change to app.js first,
-so you can see how changes pushed to your project's repository are automatically
-picked up by your project pipeline and deployed to AWS Lambda and Amazon API Gateway.
-(You can watch the pipeline progress on your AWS CodeStar project dashboard.)
-Once you've seen how that works, start developing your own code, and have fun!
+{
+  "amount": "4.49",
+  "ccnum": "6011000000000012",
+  "cvv":"330",
+  "expdate":"12/20",
+  "test":"1"
+}
 
-Learn more about Serverless Application Model (SAM) and how it works here:
-https://github.com/awslabs/serverless-application-model/blob/master/HOWTO.md
+```
 
-AWS Lambda Developer Guide:
-http://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html
+Example Output:
 
-Learn more about AWS CodeStar by reading the user guide, and post questions and
-comments about AWS CodeStar on our forum.
-
-AWS CodeStar User Guide:
-http://docs.aws.amazon.com/codestar/latest/userguide/welcome.html
-
-AWS CodeStar Forum: https://forums.aws.amazon.com/forum.jspa?forumID=248
+```json
+   {
+      "transactionStatus":"1",
+      "transactionText":"This transaction has been approved.",
+      "transactionId":"40008920184"
+   }
+```

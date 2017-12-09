@@ -6,7 +6,7 @@ Transform:
 Parameters:
   ProjectId:
     Type: String
-    Description: AWS LAmbda Funciton for Authorize credit card using Authorize.NET
+    Description: AWS LAmbda Function to Validate US Address
 
 Resources:
   CreditCardAuthorize:
@@ -14,11 +14,13 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs4.3
-       Environment:
-          Variables:
-            BETA_URL: "apitest.authorize.net"
-            PROD_URL: "api.authorize.net"
-            PORT: 443
+      Environment:
+        Variables:
+          BETA_URL: "apitest.authorize.net"
+          PROD_URL: "api.authorize.net"
+          PORT: "443"
+          GATEWAY_LOGIN: GATEWAY_LOGIN
+          GATEWAY_KEY: GATEWAY_KEY
       Role:
         Fn::ImportValue:
           !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
