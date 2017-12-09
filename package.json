@@ -1,10 +1,9 @@
 {
-    "name": "express-HelloWorld",
-    "description": "Hello World ExpressJS WebService",
+    "name": "lambda authorize function",
+    "description": "AWS Lambda function for wrapper of AWS",
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "express": "latest",
-        "aws-serverless-express": "latest"
+        "https": "^1.0.0"
     }
 }
