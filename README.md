@@ -6,7 +6,7 @@ This is a lambda function that wraps a call to the Authorize.net Authorization S
 You will need a Login and a Token from Authorize.net
 If you have sam-local installed you run test locally with
 
-sam local invoke CreditCardAuthorize --env-vars env.json -e event.json 
+sam local invoke CreditCardAuthorize --env-vars test/env.json -e test/event.json 
 
 
 Example input:

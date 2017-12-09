@@ -42,10 +42,6 @@ exports.handler = function(event, context) {
     var ccnum = event.ccnum;
     var cvv = event.cvv;
 
-
-    console.log("test transactiopn", isTestTransaction);
-    console.log("gateway_key", gateway_key);
-
     /* Define request body */
     var postjsonPayload = {
         "createTransactionRequest": {
